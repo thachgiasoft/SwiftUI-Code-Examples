@@ -1,3 +1,7 @@
+//
+// Example code for article: https://lostmoa.com/blog/DoubleColumnNavigationSplitViewInSwiftUI
+//
+
 import SwiftUI
 
 struct ContentView: View {
@@ -23,7 +27,6 @@ struct ContentView: View {
 
     }
 }
-
 
 // Detail view example
 struct RequestDetailView: View {
