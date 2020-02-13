@@ -22,7 +22,11 @@ struct TextFieldWithKeyboardObserver: UIViewRepresentable {
         return view
     }
     
-    func updateUIView(_ uiView: UITextField, context: Context) {}
+    func updateUIView(_ uiView: UITextField, context: Context) {
+        if uiView.text != text {
+            uiView.text = text
+        }
+    }
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
@@ -42,6 +46,12 @@ struct TextFieldWithKeyboardObserver: UIViewRepresentable {
                 if !(parentScrollView.currentFirstResponder() is UITextFieldWithKeyboardObserver) {
                     parentScrollView.contentInset = .zero
                 }
+            }
+        }
+        
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            DispatchQueue.main.async { [weak self] in
+                self?.parent.text = textField.text ?? ""
             }
         }
         
